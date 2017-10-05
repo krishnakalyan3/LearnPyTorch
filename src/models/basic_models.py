@@ -2,6 +2,7 @@
 
 import torch.nn as nn
 
+
 class Net(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):
         super(Net, self).__init__()
