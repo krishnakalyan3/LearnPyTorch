@@ -47,3 +47,20 @@ train_loader = torch.utils.data.DataLoader(train_dataset,
 # fetch the batch(call to `__getitem__` method)
 for img, target in train_loader:
     pass
+
+#===================== Input pipline for custom dataset =====================#
+# You should build custom dataset as below.
+class CustomDataset(data.Dataset):
+    def __init__(self):
+        # TODO
+        # 1. Initialize file path or list of file names.
+        pass
+    def __getitem__(self, index):
+        # TODO
+        # 1. Read one data from file (e.g. using numpy.fromfile, PIL.Image.open).
+        # 2. Preprocess the data (e.g. torchvision.Transform).
+        # 3. Return a data pair (e.g. image and label).
+        pass
+    def __len__(self):
+        # You should change 0 to the total size of your dataset.
+        return 0
