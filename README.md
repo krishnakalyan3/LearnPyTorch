@@ -3,9 +3,9 @@
 
 SNo.| Examples | Comments
 --- | --- | --- |
-1 | [Matrix Multiplication](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/00_matrix_mul.py) |
-2 | [Feed Forward MNIST](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/01_feed_forward.py) |
-3 | [Linear Regression](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/02_linear_regression.py)
+1 | [Basic Operations](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/00_basic.py) | Mat Mul , Gradient Checking
+2 | [Feed Forward MNIST](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/01_feed_forward.py) | Two Layer Network
+3 | [Linear Regression](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/02_linear_regression.py) | Some plots added
 A | [Mixture Of Expert]
 B | [Model Compression]
 C | [Adversarial Generation]
