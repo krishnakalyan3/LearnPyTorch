@@ -9,7 +9,7 @@ SNo.| Examples | Comments
 4 | [Logistic Regression](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/03_logistic_regression.py) | MNIST Dataset
 5 | [Simple CNN](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/04_simple_cnn.py) |CNN on MNIST
 6 | [Wide Resnet](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/05_resnet.py) | CIFAR 10, [original code](https://github.com/xternalz/WideResNet-pytorch/blob/master/train.py), [arxiv](https://arxiv.org/abs/1605.07146)
-7 | [Tensorboard Example]()
+7 | [Tensorboard Example](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/06_tensorboard.py) | Refactor Code with TFBoard
 
 Resources
 - [Deep Learning Course](https://fleuret.org/dlc/)
