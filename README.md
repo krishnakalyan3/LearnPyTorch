@@ -9,6 +9,8 @@ SNo.| Examples | Comments
 4 | [Simple CNN CIFAR 10]()
 5 | [VGG]()
 6 | [ResNet]()
+7 | [Style Transfer]()
+8 | [RNN]()
 A | [Mixture Of Expert]()
 B | [Model Compression]()
 C | [Adversarial Generation]()
@@ -16,3 +18,4 @@ C | [Adversarial Generation]()
 Resources
 - [Deep Learning Course](https://fleuret.org/dlc/)
 - [ULaval Tutorial](https://github.com/soravux/pytorch_tutorial)
+- [PyTorch for DL researchers](https://github.com/yunjey/pytorch-tutorial)
