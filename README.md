@@ -9,15 +9,17 @@ SNo.| Examples | Comments
 4 | [Logistic Regression](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/03_logistic_regression.py) | MNIST Dataset
 5 | [Simple CNN](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/04_simple_cnn.py) | MNIST Dataset
 6 | [Wide Resnet](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/05_resnet.py) | CIFAR 10, [original code](https://github.com/xternalz/WideResNet-pytorch/blob/master/train.py), [arxiv](https://arxiv.org/abs/1605.07146)
-5 | [VGG]()
-6 | [ResNet]()
-7 | [Style Transfer]()
-8 | [RNN]()
-A | [Mixture Of Expert]()
-B | [Model Compression]()
-C | [Adversarial Generation]()
 
 Resources
 - [Deep Learning Course](https://fleuret.org/dlc/)
 - [ULaval Tutorial](https://github.com/soravux/pytorch_tutorial)
 - [PyTorch for DL researchers](https://github.com/yunjey/pytorch-tutorial)
+
+TODO:
+VGG
+Style Transfer
+RNN
+Mixture Of Expert
+Model Compression
+Adversarial Generation
+Time Series
