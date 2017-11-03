@@ -7,8 +7,9 @@ SNo.| Examples | Comments
 2 | [Feed Forward MNIST](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/01_feed_forward.py) | Two Layer Network
 3 | [Linear Regression](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/02_linear_regression.py) | Plotting Examples
 4 | [Logistic Regression](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/03_logistic_regression.py) | MNIST Dataset
-5 | [Simple CNN](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/04_simple_cnn.py) | MNIST Dataset
+5 | [Simple CNN](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/04_simple_cnn.py) |CNN on MNIST
 6 | [Wide Resnet](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/05_resnet.py) | CIFAR 10, [original code](https://github.com/xternalz/WideResNet-pytorch/blob/master/train.py), [arxiv](https://arxiv.org/abs/1605.07146)
+7 | [Tensorboard Example]()
 
 Resources
 - [Deep Learning Course](https://fleuret.org/dlc/)
@@ -16,10 +17,10 @@ Resources
 - [PyTorch for DL researchers](https://github.com/yunjey/pytorch-tutorial)
 
 TODO:
-VGG
-Style Transfer
-RNN
-Mixture Of Expert
-Model Compression
-Adversarial Generation
-Time Series
+- VGG
+- Style Transfer
+- RNN
+- Mixture Of Expert
+- Model Compression
+- Adversarial Generation
+- Time Series

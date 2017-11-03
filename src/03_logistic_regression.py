@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 from models.basic_models import LogisticRegression
 import torchvision.transforms as transforms
 import torchvision.datasets as dsets
-import numpy as np
 
 
 MNIST_DATA = '../data/MNIST'
