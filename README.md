@@ -6,6 +6,7 @@ SNo.| Examples | Comments
 1 | [Basic Operations](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/00_basic.py) | Mat Mul , Gradient Checking
 2 | [Feed Forward MNIST](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/01_feed_forward.py) | Two Layer Network
 3 | [Linear Regression](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/02_linear_regression.py) | Plotting Examples
+4 | [Logistic Regression]()
 4 | [Simple CNN CIFAR 10]()
 5 | [VGG]()
 6 | [ResNet]()
