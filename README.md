@@ -27,4 +27,3 @@ TODO:
 - Model Compression
 - Adversarial Generation
 - Time Series
-- Figure out AverageMeter

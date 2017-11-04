@@ -83,7 +83,7 @@ def test():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch Cats vs Dogs Example')
-    parser.add_argument('--epochs', type=int, default=20, help='number of epochs to train')
+    parser.add_argument('--epochs', type=int, default=2, help='number of epochs to train')
     parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
     parser.add_argument('--batch_size', type=int, default=128, help='batch size')
     args = parser.parse_args()
@@ -96,8 +96,9 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=args.lr)
 
-    #train(args.epochs)
-    #valid()
-    test()
+    train(args.epochs)
+    valid()
+    #test()
 
-    # 98.3% was best accuracy in fast ai
+    # 98.3% was best accuracy in FAST AI
+    # Old benchmark 83%
