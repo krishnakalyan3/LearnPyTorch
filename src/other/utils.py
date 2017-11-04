@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-from logger import Logger
+from other.logger import Logger
+import os
+import torch.utils.data as data
+from PIL import Image
+
 
 def tensorboard_logger(loss, accuracy, epoch, net=None, images=None):
     logger = Logger('../logs/06_tensorboard_1')
@@ -31,3 +35,27 @@ def tensorboard_logger(loss, accuracy, epoch, net=None, images=None):
 
 def to_np(x):
     return x.data.cpu().numpy()
+
+inception_stats = ([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+
+
+class TestImageFolder(data.Dataset):
+    def __init__(self, root, transform=None):
+        images = []
+        for filename in os.listdir(root):
+            if filename.endswith('jpg'):
+                images.append('{}'.format(filename))
+
+        self.root = root
+        self.imgs = images
+        self.transform = transform
+
+    def __getitem__(self, index):
+        filename = self.imgs[index]
+        img = Image.open(os.path.join(self.root, filename))
+        if self.transform is not None:
+            img = self.transform(img)
+        return img, filename
+
+    def __len__(self):
+        return len(self.imgs)

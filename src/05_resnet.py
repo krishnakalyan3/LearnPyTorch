@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 import torch
 import argparse
-import torchvision
 from torchvision import transforms
-from models.basic_models import Net
 import torch.nn as nn
 from torch.autograd import Variable
 import torchvision.datasets as dsets
-import matplotlib.pyplot as plt
-from torchvision.models.resnet import resnet18
 from models.wideresnet import WideResNet
 
 
