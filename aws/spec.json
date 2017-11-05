@@ -1,0 +1,28 @@
+{
+    "DryRun": false,
+    "InstanceCount": 1,
+    "LaunchSpecification": {
+        "ImageId": "ami-31ecfb26",
+        "KeyName": "krishna_key",
+        "UserData": "",
+        "InstanceType": "p2.xlarge",
+        "Placement": {
+            "AvailabilityZone": ""
+        },
+        "BlockDeviceMappings": [
+            {
+                "VirtualName": "",
+                "DeviceName": "/dev/sda1",
+                "Ebs": {
+                    "VolumeSize": 128,
+                    "DeleteOnTermination": true,
+                    "VolumeType": "gp2",
+                    "Encrypted": false
+                }
+            }
+        ],
+        "SecurityGroupIds": [
+            "sg-7224ce0e"
+        ]
+    }
+}
