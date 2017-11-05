@@ -8,6 +8,7 @@ from torchvision import transforms
 import torchvision.models as models
 import argparse
 from other.utils import TestImageFolder
+from PIL import Image
 
 
 CATS_DOGS = '../data/dogscats/'
@@ -15,8 +16,9 @@ CATS_DOGS = '../data/dogscats/'
 
 def data_loader(batch_size):
 
-    transform_compose = transforms.Compose([transforms.Scale(256),
-                                            transforms.RandomSizedCrop(224),
+    transform_compose = transforms.Compose([transforms.RandomSizedCrop(224),
+                                            #transforms.Scale(256),
+                                            #transforms.Lambda(lambda img: img.resize((224, 224), Image.BILINEAR)),
                                             transforms.ToTensor(),
                                             transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                                                  std=[0.229, 0.224, 0.225])])
@@ -35,6 +37,8 @@ def data_loader(batch_size):
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
                                               batch_size=batch_size,
                                               shuffle=False)
+
+    print('classes {}'.format(train_dataset.classes))
     return train_loader, val_loader, test_loader
 
 
@@ -91,14 +95,29 @@ if __name__ == '__main__':
     train_loader, val_loader, test_loader = data_loader(args.batch_size)
 
     model = models.resnet18(pretrained=True)
-    model.fc = nn.Linear(512, 2)
+    for param in model.parameters():
+        param.requires_grad = False
 
+    model2 = nn.Sequential(nn.Linear(512, 128),
+                           nn.ReLU(True),
+                           nn.Dropout(),
+                           nn.Linear(128, 64),
+                           nn.ReLU(True),
+                           nn.Dropout(),
+                           nn.Linear(64, 2))
+
+    # model.fc = nn.Linear(512, 2)
+    # or use model2
+    model.fc = model2
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr=args.lr)
+
+    only_grad_param = filter(lambda p: p.requires_grad, model.parameters())
+    optimizer = torch.optim.SGD(only_grad_param, lr=args.lr)
 
     train(args.epochs)
     valid()
-    #test()
+    test()
 
     # 98.3% was best accuracy in FAST AI
     # Old benchmark 83%
+    exit()

@@ -36,9 +36,6 @@ def tensorboard_logger(loss, accuracy, epoch, net=None, images=None):
 def to_np(x):
     return x.data.cpu().numpy()
 
-inception_stats = ([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
-
-
 class TestImageFolder(data.Dataset):
     def __init__(self, root, transform=None):
         images = []
@@ -59,3 +56,14 @@ class TestImageFolder(data.Dataset):
 
     def __len__(self):
         return len(self.imgs)
+
+
+import psutil
+def cpuStats():
+        print(sys.version)
+        print(psutil.cpu_percent())
+        print(psutil.virtual_memory())  # physical memory usage
+        pid = os.getpid()
+        py = psutil.Process(pid)
+        memoryUse = py.memory_info()[0] / 2. ** 30  # memory use in GB...I think
+        print('memory GB:', memoryUse)
