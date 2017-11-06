@@ -71,8 +71,8 @@ def valid():
         _, predicted = torch.max(outputs.data, 1)
 
         total += target.size(0)
-        print(predicted)
-        print(target)
+        print(type(predicted))
+        print(type(target))
         correct += (predicted.cpu() == target).sum()
 
     print('Accuracy of the network on the %d valid images: %d %%' % (total, 100 * correct / total))
