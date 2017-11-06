@@ -6,7 +6,8 @@ import torchvision.datasets as dsets
 import torchvision.transforms as transforms
 from torch.autograd import Variable
 from models.basic_models import Net
-from other.utils import tensorboard_logger
+from other.logger import Logger, to_np
+from utils import
 import argparse
 
 MNIST_DATA = '../data/MNIST'
@@ -76,6 +77,6 @@ if __name__ == '__main__':
     model = Net()
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=args.lr)
+
     train(args.epochs)
-    test()
 

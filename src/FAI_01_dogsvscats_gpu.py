@@ -71,7 +71,7 @@ def valid():
         _, predicted = torch.max(outputs.data, 1)
 
         total += target.size(0)
-        correct += (predicted == target).sum()
+        correct += (predicted.cpu() == target).sum()
 
     print('Accuracy of the network on the %d valid images: %d %%' % (total, 100 * correct / total))
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     backend = ['cpu', 'gpu']
 
     parser = argparse.ArgumentParser(description='PyTorch Cats vs Dogs Example')
-    parser.add_argument('--epochs', type=int, default=2, help='number of epochs to train')
+    parser.add_argument('--epochs', type=int, default=1, help='number of epochs to train')
     parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
     parser.add_argument('--batch_size', type=int, default=128, help='batch size')
     parser.add_argument('--backend', default='cpu', type=str, help='Type of backend', choices=backend)
