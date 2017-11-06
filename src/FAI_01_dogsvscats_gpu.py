@@ -47,7 +47,7 @@ def train(epochs):
 
     for epoch in range(1, epochs+1):
         for batch_idx, (data, target) in enumerate(train_loader):
-            data, target = Variable(data), Variable(target)
+            data, target = Variable(data.cuda()), Variable(target.cuda())
 
             optimizer.zero_grad()
             outputs = model(data)
@@ -66,7 +66,7 @@ def valid():
     correct = 0
     total = 0
     for data, target in test_loader:
-        data, target = Variable(data), Variable(target)
+        data, target = Variable(data.cuda()), Variable(target.cuda())
         outputs = model(data)
         _, predicted = torch.max(outputs.data, 1)
 
@@ -117,6 +117,7 @@ if __name__ == '__main__':
     # model.fc = nn.Linear(512, 2)
     # or use model2
     model.fc = model2
+    model.cuda()
     criterion = nn.CrossEntropyLoss()
 
     only_grad_param = filter(lambda p: p.requires_grad, model.parameters())

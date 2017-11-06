@@ -7,7 +7,7 @@
         "UserData": "",
         "InstanceType": "p2.xlarge",
         "Placement": {
-            "AvailabilityZone": ""
+            "AvailabilityZone": "us-east-1a"
         },
         "BlockDeviceMappings": [
             {
@@ -22,7 +22,7 @@
             }
         ],
         "SecurityGroupIds": [
-            "sg-7224ce0e"
+            "sg-9af3c9e8"
         ]
     }
 }
