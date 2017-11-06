@@ -66,7 +66,7 @@ def valid():
     correct = 0
     total = 0
     for data, target in test_loader:
-        data, target = Variable(data.cuda()), Variable(target.cuda())
+        data, target = Variable(data), Variable(target)
         outputs = model(data)
         _, predicted = torch.max(outputs.data, 1)
 
@@ -95,10 +95,7 @@ if __name__ == '__main__':
     parser.add_argument('--backend', default='cpu', type=str, help='Type of backend', choices=backend)
     args = parser.parse_args()
 
-    if True:
-        kwargs = {'num_workers': 1, 'pin_memory': True}
-    else:
-        kwargs = {}
+    kwargs = {'num_workers': 1, 'pin_memory': True}
 
     train_loader, val_loader, test_loader = data_loader(args.batch_size)
 
