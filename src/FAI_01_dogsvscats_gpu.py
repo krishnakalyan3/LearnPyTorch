@@ -66,7 +66,7 @@ def valid():
     correct = 0
     total = 0
     for data, target in val_loader:
-        data, target = Variable(data.cuda()), Variable(target)
+        data, target = Variable(data.cuda()), Variable(target.cuda())
         outputs = model(data)
         _, predicted = torch.max(outputs.data, 1)
         total += target.size(0)
