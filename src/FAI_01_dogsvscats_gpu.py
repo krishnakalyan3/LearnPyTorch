@@ -95,7 +95,7 @@ if __name__ == '__main__':
     parser.add_argument('--backend', default='cpu', type=str, help='Type of backend', choices=backend)
     args = parser.parse_args()
 
-    if args.backend:
+    if True:
         kwargs = {'num_workers': 1, 'pin_memory': True}
     else:
         kwargs = {}
@@ -118,7 +118,9 @@ if __name__ == '__main__':
     # or use model2
     model.fc = model2
     model.cuda()
+
     criterion = nn.CrossEntropyLoss()
+    criterion.cuda()
 
     only_grad_param = filter(lambda p: p.requires_grad, model.parameters())
     optimizer = torch.optim.SGD(only_grad_param, lr=args.lr)
