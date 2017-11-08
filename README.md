@@ -19,11 +19,12 @@ Resources
 - [Fast AI Coursework](http://www.fast.ai/)
 
 TODO:
-- Cuda Code
-- VGG
+- Word Embedding
+(http://on-demand.gputechconf.com/gtc/2017/video/s7634-jeremy-howard-build-a_neural_translation_system_from_scratch_with_pytorch.mp4)
 - Style Transfer
 - RNN
 - Mixture Of Expert
 - Model Compression
 - Adversarial Generation
 - Time Series
+- Attention
