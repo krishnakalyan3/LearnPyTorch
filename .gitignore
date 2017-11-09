@@ -3,3 +3,4 @@ data/*
 logs/*
 weights/*
 aws/krishna_key.pem
+.DS_Store
