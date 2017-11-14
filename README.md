@@ -17,6 +17,10 @@ Resources
 - [ULaval Tutorial](https://github.com/soravux/pytorch_tutorial)
 - [PyTorch for DL researchers](https://github.com/yunjey/pytorch-tutorial)
 - [Fast AI Coursework](http://www.fast.ai/)
+- [MILA PyTorch](https://github.com/mila-udem/welcome_tutorials)
+- [CS-224n](https://github.com/DSKSD/DeepNLP-models-Pytorch)
+- [CS-231n](https://github.com/MahanFathi/CS231)
+- [PyTorch Exercise](https://github.com/Kyubyong/pytorch_exercises)
 
 TODO:
 - Word Embedding
