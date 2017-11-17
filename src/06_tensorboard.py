@@ -7,7 +7,7 @@ import torchvision.transforms as transforms
 from torch.autograd import Variable
 from models.basic_models import Net
 from other.logger import Logger, to_np
-from utils import
+from utils import tensorboard_logger
 import argparse
 
 MNIST_DATA = '../data/MNIST'

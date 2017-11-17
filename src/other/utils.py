@@ -3,6 +3,8 @@ from other.logger import Logger
 import os
 import torch.utils.data as data
 from PIL import Image
+import sys
+import psutil
 
 
 def tensorboard_logger(loss, accuracy, epoch, net=None, images=None):
@@ -58,8 +60,7 @@ class TestImageFolder(data.Dataset):
         return len(self.imgs)
 
 
-import psutil
-def cpuStats():
+def cpu_stats():
         print(sys.version)
         print(psutil.cpu_percent())
         print(psutil.virtual_memory())  # physical memory usage

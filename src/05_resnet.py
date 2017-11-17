@@ -7,7 +7,6 @@ from torch.autograd import Variable
 import torchvision.datasets as dsets
 from models.wideresnet import WideResNet
 
-
 CIFAR_DATA = '../data/CIFAR'
 
 if __name__ == '__main__':
@@ -20,18 +19,17 @@ if __name__ == '__main__':
     normalize = transforms.Normalize(mean=[x / 255.0 for x in [125.3, 123.0, 113.9]],
                                      std=[x / 255.0 for x in [63.0, 62.1, 66.7]])
 
-
     train_dataset = dsets.CIFAR10(root=CIFAR_DATA,
-                                train=True,
-                                transform=transforms.Compose(
-                                    [transforms.ToTensor(), normalize]),
+                                  train=True,
+                                  transform=transforms.Compose(
+                                      [transforms.ToTensor(), normalize]),
 
-                                download=True)
+                                  download=True)
 
     test_dataset = dsets.CIFAR10(root=CIFAR_DATA,
-                               train=False,
-                               transform=transforms.Compose([
-                                   transforms.ToTensor(), normalize]))
+                                 train=False,
+                                 transform=transforms.Compose([
+                                     transforms.ToTensor(), normalize]))
 
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                                batch_size=64,
@@ -56,8 +54,8 @@ if __name__ == '__main__':
             loss.backward()
             optimizer.step()
             print('Epoch [%d/%d], Step [%d/%d], Loss: %.4f' % (
-            epoch + 1, args.epochs, i + 1, len(train_dataset) // args.batch_size,
-            loss.data[0]))
+                epoch + 1, args.epochs, i + 1, len(train_dataset) // args.batch_size,
+                loss.data[0]))
 
     # Test
     correct = 0
@@ -68,7 +66,7 @@ if __name__ == '__main__':
         _, predicted = torch.max(outputs.data, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum()
-        #print('Accuracy of the network on the %d test images: %d %%' % (len(test_loader.dataset), 100 * correct / total))
+        # print('Accuracy of the network on the %d test images: %d %%' % (len(test_loader.dataset), 100 * correct / total))
         #
         # for i in range(len(labels)):
         #
