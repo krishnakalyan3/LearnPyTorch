@@ -68,11 +68,11 @@ def test():
         inputs, target = Variable(inputs, volatile=True), Variable(target)
         outputs = net(inputs)
         loss = criterion(outputs, target)
-        print('{} loss', loss.data[0])
+        print('{} loss'.format(loss.data[0]))
 
         _, predicted = torch.max(outputs.data, 1)
         total += target.size(0)
-        correct += (predicted == target).sum()
+        correct += predicted.eq(target.data).cpu().sum()
     print('Accuracy of the network on the %d test images: %d %%' % (total, 100 * correct / total))
 
 
