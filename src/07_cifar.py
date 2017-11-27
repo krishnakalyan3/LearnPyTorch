@@ -34,6 +34,24 @@ def data_loader():
     return train_loader, test_loader
 
 
+def train(epochs):
+    net.train()
+
+    for epoch in range(1, epochs+1):
+        for batch_idx, (data, target) in enumerate(train_loader):
+            if use_cuda:
+                data, targets = data.cuda(), targets.cuda()
+            data, target = Variable(data), Variable(target)
+            optimizer.zero_grad()
+            outputs = net(data)
+            loss = criterion(outputs, target)
+            loss.backward()
+            optimizer.step()
+
+            if batch_idx % 50 == 0:
+                print('Train Epoch: [{}/{}] [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+                    epoch, epochs, batch_idx * len(data), len(train_loader.dataset),
+                    100. * batch_idx / len(train_loader), loss.data[0]))
 
 
 if __name__ == '__main__':
@@ -55,3 +73,4 @@ if __name__ == '__main__':
 
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
+    train(args.epochs)
