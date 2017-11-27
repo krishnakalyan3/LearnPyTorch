@@ -68,7 +68,7 @@ def test():
         inputs, target = Variable(inputs, volatile=True), Variable(target)
         outputs = net(inputs)
         loss = criterion(outputs, target)
-        print('{} loss'.format(loss.data[0]))
+        #print('{} loss'.format(loss.data[0]))
 
         _, predicted = torch.max(outputs.data, 1)
         total += target.size(0)
@@ -78,8 +78,8 @@ def test():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
-    parser.add_argument('--epochs', type=int, default=1, help='number of epochs to train')
-    parser.add_argument('--lr', type=float, default=0.1, help='learning rate')
+    parser.add_argument('--epochs', type=int, default=5, help='number of epochs to train')
+    parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
     args = parser.parse_args()
 
     use_cuda = torch.cuda.is_available()
