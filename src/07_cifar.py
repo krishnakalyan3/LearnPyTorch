@@ -40,7 +40,7 @@ def train(epochs):
     for epoch in range(1, epochs+1):
         for batch_idx, (data, target) in enumerate(train_loader):
             if use_cuda:
-                data, targets = data.cuda(), targets.cuda()
+                data, target = data.cuda(), target.cuda()
             optimizer.zero_grad()
             data, target = Variable(data), Variable(target)
             outputs = net(data)
