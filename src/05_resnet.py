@@ -1,49 +1,38 @@
 #!/usr/bin/env python3
-import torch
-import argparse
-from torchvision import transforms
-import torch.nn as nn
-from torch.autograd import Variable
-import torchvision.datasets as dsets
+
 from models.wideresnet import WideResNet
+import torch
+import torch.nn as nn
 
-CIFAR_DATA = '../data/CIFAR'
+import torchvision
+import torchvision.transforms as transforms
+import argparse
+from torch.autograd import Variable
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
-    parser.add_argument('--epochs', type=int, default=3, help='number of epochs to train')
-    parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
-    parser.add_argument('--batch_size', type=int, default=128, help='batch size')
-    args = parser.parse_args()
 
-    normalize = transforms.Normalize(mean=[x / 255.0 for x in [125.3, 123.0, 113.9]],
-                                     std=[x / 255.0 for x in [63.0, 62.1, 66.7]])
+def data_loader():
+    transform_train = transforms.Compose([
+        transforms.RandomCrop(32, padding=4),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
 
-    train_dataset = dsets.CIFAR10(root=CIFAR_DATA,
-                                  train=True,
-                                  transform=transforms.Compose(
-                                      [transforms.ToTensor(), normalize]),
+    transform_test = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
 
-                                  download=True)
+    trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train)
+    train_loader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers=2)
 
-    test_dataset = dsets.CIFAR10(root=CIFAR_DATA,
-                                 train=False,
-                                 transform=transforms.Compose([
-                                     transforms.ToTensor(), normalize]))
+    testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
+    test_loader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=2)
 
-    train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                               batch_size=64,
-                                               shuffle=True)
+    return train_loader, test_loader
 
-    test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
-                                              batch_size=64,
-                                              shuffle=False)
 
-    model = WideResNet(int(28), 10)
-
-    criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr=args.lr)
-
+def train():
     for epoch in range(args.epochs):
         for i, (images, labels) in enumerate(train_loader):
             images = Variable(images)
@@ -57,7 +46,8 @@ if __name__ == '__main__':
                 epoch + 1, args.epochs, i + 1, len(train_dataset) // args.batch_size,
                 loss.data[0]))
 
-    # Test
+
+def test():
     correct = 0
     total = 0
     for images, labels in test_loader:
@@ -66,17 +56,21 @@ if __name__ == '__main__':
         _, predicted = torch.max(outputs.data, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum()
-        # print('Accuracy of the network on the %d test images: %d %%' % (len(test_loader.dataset), 100 * correct / total))
-        #
-        # for i in range(len(labels)):
-        #
-        #     # Print Incorrect Images
-        #     if labels[i] != predicted[i]:
-        #         current_image = images.data.numpy()[i].reshape(-1, 28)
-        #         plt.clf()
-        #         plt.imshow(current_image, cmap='gray_r', )
-        #         plt.show(block=False)
-        #         plt.pause(0.10)
-        #         print('True Label {}, Predict Label {}'.format(labels[i], predicted[i]))
 
     print('Accuracy of the network on the %d test images: %d %%' % (total, 100 * correct / total))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
+    parser.add_argument('--epochs', type=int, default=3, help='number of epochs to train')
+    parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
+    parser.add_argument('--batch_size', type=int, default=128, help='batch size')
+    args = parser.parse_args()
+
+    train_loader, test_loader = data_loader()
+    model = WideResNet(int(28), 10)
+
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.SGD(model.parameters(), lr=args.lr)
+    train(args.epochs)
+    test()
