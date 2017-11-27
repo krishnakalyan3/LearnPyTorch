@@ -69,11 +69,12 @@ def test():
         _, predicted = torch.max(outputs.data, 1)
         total += target.size(0)
         correct += (predicted == target).sum()
+    print('Accuracy of the network on the %d test images: %d %%' % (total, 100 * correct / total))
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
-    parser.add_argument('--epochs', type=int, default=20, help='number of epochs to train')
+    parser.add_argument('--epochs', type=int, default=1, help='number of epochs to train')
     parser.add_argument('--lr', type=float, default=0.1, help='learning rate')
     args = parser.parse_args()
 
