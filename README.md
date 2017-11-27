@@ -11,6 +11,7 @@ SNo.| Examples | Comments
 6 | [Wide Resnet](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/05_resnet.py) | CIFAR 10, [original code](https://github.com/xternalz/WideResNet-pytorch/blob/master/train.py), [arxiv](https://arxiv.org/abs/1605.07146)
 7 | [Tensorboard Example](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/06_tensorboard.py) | Refactor Code with [TFBoard](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/04-utils/tensorboard)
 8 | [DogsvsCats](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/FAI_01_dogsvscats_gpu.py) | Initial Code
+9 | [CIFAR 10](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/07_cifar.py) | With SENET Arch
 
 Resources
 - [Deep Learning Course](https://fleuret.org/dlc/)

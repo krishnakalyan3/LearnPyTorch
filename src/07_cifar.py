@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+# Inspiration
+# https://github.com/kuangliu/pytorch-cifar/blob/master/main.py
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
