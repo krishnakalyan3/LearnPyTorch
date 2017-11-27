@@ -54,6 +54,23 @@ def train(epochs):
                     100. * batch_idx / len(train_loader), loss.data[0]))
 
 
+def test():
+    net.eval()
+    correct = 0
+    total = 0
+    for batch_idx, (inputs, target) in enumerate(test_loader):
+        if use_cuda:
+            inputs, target = inputs.cuda(), target.cuda()
+        inputs, target = Variable(inputs, volatile=True), Variable(target)
+        outputs = net(inputs)
+        loss = criterion(outputs, target)
+        print('{} loss', loss.data[0])
+
+        _, predicted = torch.max(outputs.data, 1)
+        total += target.size(0)
+        correct += (predicted == target).sum()
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
     parser.add_argument('--epochs', type=int, default=20, help='number of epochs to train')
@@ -68,8 +85,10 @@ if __name__ == '__main__':
     net = senet.SENet18()
 
     if use_cuda:
+        total_gpus = torch.cuda.device_count()
         net.cuda()
-        net = torch.nn.DataParallel(net, device_ids=range(torch.cuda.device_count()))
+        net = torch.nn.DataParallel(net, device_ids=range(total_gpus))
+        print('{} GPUs available'.format(total_gpus))
 
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
