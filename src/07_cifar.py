@@ -9,7 +9,7 @@ import torchvision.transforms as transforms
 import os
 import argparse
 from torch.autograd import Variable
-from models import *
+from models import senet
 
 
 def data_loader():
@@ -34,6 +34,8 @@ def data_loader():
     return train_loader, test_loader
 
 
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
     parser.add_argument('--epochs', type=int, default=20, help='number of epochs to train')
@@ -45,9 +47,11 @@ if __name__ == '__main__':
 
     classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-    net = SENet18()
+    net = senet.SENet18()
 
     if use_cuda:
         net.cuda()
         net = torch.nn.DataParallel(net, device_ids=range(torch.cuda.device_count()))
 
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
