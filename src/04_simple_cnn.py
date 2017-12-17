@@ -9,12 +9,14 @@ import torch.nn as nn
 from torch.autograd import Variable
 import torchvision.datasets as dsets
 import matplotlib.pyplot as plt
+from other.utils import save_model
+
 
 MNIST_DATA = '../data/MNIST'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
-    parser.add_argument('--epochs', type=int, default=3, help='number of epochs to train')
+    parser.add_argument('--epochs', type=int, default=1, help='number of epochs to train')
     parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
     parser.add_argument('--batch_size', type=int, default=128, help='batch size')
     args = parser.parse_args()
@@ -53,6 +55,8 @@ if __name__ == '__main__':
             print('Epoch [%d/%d], Step [%d/%d], Loss: %.4f' % (
             epoch + 1, args.epochs, i + 1, len(train_dataset) // args.batch_size,
             loss.data[0]))
+
+    #save_model(model, '../data/models/mnist_model.pkl')
 
     # Test
     correct = 0

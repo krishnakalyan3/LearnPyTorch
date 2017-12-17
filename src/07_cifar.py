@@ -14,6 +14,7 @@ import os
 import argparse
 from torch.autograd import Variable
 from models import senet
+from models import basic_models
 
 
 def data_loader():
@@ -78,7 +79,7 @@ def test():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch FeedForward Example')
-    parser.add_argument('--epochs', type=int, default=5, help='number of epochs to train')
+    parser.add_argument('--epochs', type=int, default=1, help='number of epochs to train')
     parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
     args = parser.parse_args()
 
@@ -98,4 +99,5 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
     train(args.epochs)
+
     test()

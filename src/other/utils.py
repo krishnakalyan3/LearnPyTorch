@@ -2,6 +2,7 @@
 from other.logger import Logger
 import os
 import torch.utils.data as data
+import torch
 from PIL import Image
 import sys
 import psutil
@@ -68,3 +69,12 @@ def cpu_stats():
         py = psutil.Process(pid)
         memoryUse = py.memory_info()[0] / 2. ** 30  # memory use in GB...I think
         print('memory GB:', memoryUse)
+
+
+def save_model(model, path):
+    torch.save(model.state_dict(), path)
+
+
+def load_model(model, path):
+    model.load_state_dict(torch.load(path, map_location=lambda storage, loc: storage))
+    return model
