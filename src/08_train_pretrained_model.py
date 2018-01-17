@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-from models.basic_models import Net
-from other.utils import load_model
+
 import torch
-import argparse
-import torchvision
 from torchvision import transforms
 from models.basic_models import Net
 import torch.nn as nn
 from torch.autograd import Variable
 import torchvision.datasets as dsets
 import matplotlib.pyplot as plt
-from other.utils import save_model
+from other.utils import load_model
+
 
 MNIST_DATA = '../data/MNIST'
 
@@ -34,6 +32,7 @@ def data_loader():
                                               batch_size=64,
                                               shuffle=False)
     return train_loader, test_loader
+
 
 def train(epochs):
     model.train()

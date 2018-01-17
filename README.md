@@ -12,7 +12,8 @@ SNo.| Examples | Comments
 7 | [Tensorboard Example](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/06_tensorboard.py) | Refactor Code with [TFBoard](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/04-utils/tensorboard)
 8 | [DogsvsCats](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/FAI_01_dogsvscats_gpu.py) | Initial Code
 9 | [CIFAR 10](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/07_cifar.py) | With SENET Arch
-10 | [Prediction](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/08_predict.py) | With MNIST
+10 | [Pre Trained Model](https://github.com/krishnakalyan3/LearnPyTorch/blob/master/src/08_train_pretrained_model.py) | With MNIST
+11 | [Predict Fast AI] |
 
 Resources
 - [Deep Learning Course](https://fleuret.org/dlc/)

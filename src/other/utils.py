@@ -78,3 +78,14 @@ def save_model(model, path):
 def load_model(model, path):
     model.load_state_dict(torch.load(path, map_location=lambda storage, loc: storage))
     return model
+
+
+def resnext50(pre):
+    return load_pre(pre, resnext_50_32x4d, 'resnext_50_32x4d')
+
+
+def load_pre(pre, f, fn):
+    m = f()
+    path = os.path.dirname(__file__)
+    if pre: load_model(m, f'{path}/weights/{fn}.pth')
+    return m
