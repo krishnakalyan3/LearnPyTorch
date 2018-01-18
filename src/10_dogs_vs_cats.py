@@ -127,4 +127,3 @@ if __name__ == '__main__':
 
     # 98.3% was best accuracy in FAST AI
     # Old benchmark 83%
-    exit()

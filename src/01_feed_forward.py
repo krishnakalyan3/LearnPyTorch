@@ -6,10 +6,40 @@ import torchvision.datasets as dsets
 import torchvision.transforms as transforms
 from torch.autograd import Variable
 import argparse
-from models.basic_models import Net
-
+from models.basic_models import SimpleNet
 
 MNIST_DATA = '../data/MNIST'
+
+
+def train():
+    for epoch in range(args.epochs):
+        for i, (images, labels) in enumerate(train_loader):
+            images = Variable(images.view(-1, 28 * 28))
+            labels = Variable(labels)
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            print('Epoch [%d/%d], Step [%d/%d], Loss: %.4f' % (
+            epoch + 1, args.epochs, i + 1, len(train_dataset) // args.batch_size,
+            loss.data[0]))
+
+
+def test():
+    correct = 0
+    total = 0
+    for images, labels in test_loader:
+        images = Variable(images.view(-1, 28 * 28))
+        outputs = model(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum()
+        for i in range(len(labels)):
+            if labels[i] != predicted[i]:
+                print('True Label {}, Predict Label {}'.format(labels[i], predicted[i]))
+
+    print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
 
 
 if __name__ == '__main__':
@@ -36,34 +66,10 @@ if __name__ == '__main__':
                                               batch_size=64,
                                               shuffle=False)
 
-    model = Net(input_size=784, hidden_size=500, num_classes=10)
+    model = SimpleNet(input_size=784, hidden_size=500, num_classes=10)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
 
-    # Train
-    for epoch in range(args.epochs):
-        for i, (images, labels) in enumerate(train_loader):
-            images = Variable(images.view(-1, 28 * 28))
-            labels = Variable(labels)
-            optimizer.zero_grad()
-            outputs = model(images)
-            loss = criterion(outputs, labels)
-            loss.backward()
-            optimizer.step()
-            print('Epoch [%d/%d], Step [%d/%d], Loss: %.4f'% (epoch + 1, args.epochs, i + 1, len(train_dataset) // args.batch_size,
-                                                              loss.data[0]))
+    train()
+    test()
 
-    # Test
-    correct = 0
-    total = 0
-    for images, labels in test_loader:
-        images = Variable(images.view(-1, 28 * 28))
-        outputs = model(images)
-        _, predicted = torch.max(outputs.data, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum()
-        for i in range(len(labels)):
-            if labels[i] != predicted[i]:
-                print('True Label {}, Predict Label {}'.format(labels[i], predicted[i]))
-
-    print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))

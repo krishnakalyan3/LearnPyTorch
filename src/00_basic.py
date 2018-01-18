@@ -4,7 +4,6 @@ from torch.autograd import Variable
 import torch.nn as nn
 
 # Example 1
-
 a = torch.IntTensor([1, 2, 3])
 b = torch.IntTensor([4, 5, 6])
 m = a * b
@@ -12,7 +11,6 @@ print(a.numpy())
 print(m.numpy())
 
 # Example 2
-
 x = Variable(torch.Tensor([6]), requires_grad=False)
 w = Variable(torch.Tensor([2]), requires_grad=True)
 b = Variable(torch.Tensor([3]), requires_grad=True)

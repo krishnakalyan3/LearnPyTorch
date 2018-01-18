@@ -55,7 +55,6 @@ def image_loader(image_name):
     return predicted[1].data.numpy()
 
 
-
 if __name__ == '__main__':
     model = build_model()
     model = load_model(model, '../data/models/resnext_50_all_data.h5')

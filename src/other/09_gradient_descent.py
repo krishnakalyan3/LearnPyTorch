@@ -25,8 +25,6 @@ def gen_fake_data(n, a, b):
 
 
 
-
-
 if __name__ == '__main__':
     x, y = gen_fake_data(10000, 3., 8.)
 
